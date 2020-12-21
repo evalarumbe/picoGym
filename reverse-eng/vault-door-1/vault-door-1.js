@@ -4,10 +4,6 @@ const path = require("path");
 const filePath = path.join(__dirname, 'vault-door-1.java');
 const fileData = fs.readFileSync(filePath, 'utf8');
 
-// find all lines containing 'password.charAt' and trim them
-
-'password.charAt('.length
-
 const pwd = (
   fileData
     .split('\n') // get lines from file
