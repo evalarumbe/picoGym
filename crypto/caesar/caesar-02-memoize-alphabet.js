@@ -16,3 +16,5 @@ function decodeCaesar(ciphertext, rot) {
 // for (let i = 0; i < 26; i++) {
 //   console.log(decodeCaesar(message, i));
 // }
+
+module.exports = decodeCaesar;
