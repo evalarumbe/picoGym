@@ -1,0 +1,23 @@
+{
+  "name": "picoGym",
+  "version": "1.0.0",
+  "description": "Using CTF challenges from [picoCTF](https://play.picoctf.org/) as an excuse to get practice with Node.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evalarumbe/picoGym.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/evalarumbe/picoGym/issues"
+  },
+  "homepage": "https://github.com/evalarumbe/picoGym#readme",
+  "devDependencies": {
+    "jest": "^26.6.3"
+  }
+}
