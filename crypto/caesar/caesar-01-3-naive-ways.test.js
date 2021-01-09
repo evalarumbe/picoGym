@@ -1,8 +1,13 @@
 const decodeCaesar = require('./caesar-01-3-naive-ways');
 
 // As per https://en.wikipedia.org/wiki/Caesar_cipher
-// E in the plaintext with a rot of -3 becomes B in the ciphertext
+// E in the cleartext with a rot of -3 becomes B in the ciphertext
 
+// Rot -3 and 23
+//  clearIndex: 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+//   clearChar: a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+// cipherIndex: 23 24 25 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22
+//  cipherChar: x  y  z  a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w
 describe('Negative rotation (verifiable example from WikiPedia)', () => {
   describe('rot -3 (equivalent to 23)', () => {
     test('beginning of alphabet', () => {
@@ -39,6 +44,43 @@ describe('Negative rotation (verifiable example from WikiPedia)', () => {
   });
 });
 
+describe('Rotations that exceed alphabet length', () => {
+  // remember this is equivalent to rot 23
+  describe('rot -55 (rot -3 minus 2 alphabet lengths)', () => {
+    test('beginning of alphabet', () => {
+      expect(decodeCaesar('a', -55)).toBe('d');
+      expect(decodeCaesar('b', -55)).toBe('e');
+    });
+    test('end of alphabet', () => {
+      expect(decodeCaesar('y', -55)).toBe('b');
+      expect(decodeCaesar('z', -55)).toBe('c');
+    });
+    test('multi-char string', () => {
+      expect(decodeCaesar('abyz', -55)).toBe('debc');
+    });
+    test('same algo does NOT work in reverse', () => {
+      expect(decodeCaesar('debc', -55)).not.toBe('abyz');
+    });
+  });
+  // remember this is equivalent to rot -3
+  describe('rot 101 (rot 23 plus 3 alphabet lengths)', () => {
+    test('beginning of alphabet', () => {
+      expect(decodeCaesar('a', 101)).toBe('d');
+      expect(decodeCaesar('b', 101)).toBe('e');
+    });
+    test('end of alphabet', () => {
+      expect(decodeCaesar('y', 101)).toBe('b');
+      expect(decodeCaesar('z', 101)).toBe('c');
+    });
+    test('multi-char string', () => {
+      expect(decodeCaesar('abyz', 101)).toBe('debc');
+    });
+    test('same algo does NOT work in reverse', () => {
+      expect(decodeCaesar('debc', 101)).not.toBe('abyz');
+    });
+  });
+});
+
 describe('Rotations that don\'t alter the ciphertext', () => {
   describe('rot 0 (equivalent to 26)', () => {
     test('beginning of alphabet', () => {
@@ -69,6 +111,11 @@ describe('Rotations that don\'t alter the ciphertext', () => {
   });
 });
 
+// Rot 13 and -13
+//  clearIndex: 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+//   clearChar: a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+// cipherIndex: 13 14 15 16 17 18 19 20 21 22 23 24 25 0  1  2  3  4  5  6  7  8  9  10 11 12
+//  cipherChar: n  o  p  q  r  s  t  u  v  w  x  y  z  a  b  c  d  e  f  g  h  i  j  k  l  m
 describe('Same algorithm for decoding and encoding', () => {
   describe('rot 13 (equivalent to -13)', () => {
     test('beginning of alphabet', () => {
@@ -105,6 +152,11 @@ describe('Same algorithm for decoding and encoding', () => {
   });
 });
 
+// Rot 1 and 27
+//  clearIndex: 0  1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25
+//   clearChar: a  b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z
+// cipherIndex: 1  2  3  4  5  6  7  8  9  10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 0
+//  cipherChar: b  c  d  e  f  g  h  i  j  k  l  m  n  o  p  q  r  s  t  u  v  w  x  y  z  a
 describe('Extra large rotation (> alphabet length of 26)', () => {
   describe('rot 1 (equivalent to 27)', () => {
     test('beginning of alphabet', () => {
