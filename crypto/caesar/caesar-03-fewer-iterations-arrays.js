@@ -2,9 +2,14 @@ const message = 'dspttjohuifsvcjdpoabrkttds';
 
 // rot: number of places to advance in the alphabet to get the cleartext
 function decodeCaesar(ciphertext, rot, debug = false) {
+  // Start the solution with placeholder underscores
+  const cleartext = Array(ciphertext.length).fill('_');
+
   const az = 'abcdefghijklmnopqrstuvwxyz';
+  
   // Prepare ciphertext for array iteration
   const splitCiphertext = ciphertext.split('');
+  
   // For very large rotations (or very small, if negative) that are longer than an alphabet,
   // let's simplify it so it works in our conversion formula.
   // E.g. add 2 alphabet lengths to -55 to get -3
@@ -16,9 +21,6 @@ function decodeCaesar(ciphertext, rot, debug = false) {
   const solvedCipherChars = [];
   let charsExamined = 0;
   
-  // Start the solution with placeholder underscores
-  const cleartext = Array(ciphertext.length).fill('_');
-
   // examine each char in the ciphertext to check whether it needs replacing
   for (let i = 0; i < splitCiphertext.length; i ++) {
     // Only decode this char if it's still unsolved
