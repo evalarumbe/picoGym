@@ -31,7 +31,7 @@ function decodeCaesar(ciphertext, rot, debug = false) {
       // Improvement on prev formulae: Now works on negative, very large and very small numbers.
       // To get % to behave like a modulo operator in JS, we need this freaky formula.
       // MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
-      const clearIndex = (((cipherIndex - shift) % 26 ) + 26 ) % 26;;
+      const clearIndex = (((cipherIndex - shift) % 26 ) + 26 ) % 26;
 
       const clearChar = az[clearIndex];
       let occurrenceIndex = i;
