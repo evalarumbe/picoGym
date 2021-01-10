@@ -21,6 +21,9 @@ describe('Negative rotation (verifiable example from WikiPedia)', () => {
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', -3)).toBe('debc');
     });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', -3)).toBe('deeeecccbb');
+    });
     test('same algo does NOT work in reverse', () => {
       expect(decodeCaesar('debc', -3)).not.toBe('abyz');
     });
@@ -37,6 +40,9 @@ describe('Negative rotation (verifiable example from WikiPedia)', () => {
     });
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 23)).toBe('debc');
+    });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 23)).toBe('deeeecccbb');
     });
     test('same algo does NOT work in reverse', () => {
       expect(decodeCaesar('debc', 23)).not.toBe('abyz');
@@ -58,6 +64,9 @@ describe('Rotations that exceed alphabet length', () => {
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', -55)).toBe('debc');
     });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', -55)).toBe('deeeecccbb');
+    });
     test('same algo does NOT work in reverse', () => {
       expect(decodeCaesar('debc', -55)).not.toBe('abyz');
     });
@@ -74,6 +83,9 @@ describe('Rotations that exceed alphabet length', () => {
     });
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 101)).toBe('debc');
+    });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 101)).toBe('deeeecccbb');
     });
     test('same algo does NOT work in reverse', () => {
       expect(decodeCaesar('debc', 101)).not.toBe('abyz');
@@ -94,6 +106,9 @@ describe('Rotations that don\'t alter the ciphertext', () => {
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 0)).toBe('abyz');
     });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 0)).toBe('abbbbzzzyy');
+    });
   });
 
   describe('rot 26 (equivalent to 0)', () => {
@@ -107,6 +122,9 @@ describe('Rotations that don\'t alter the ciphertext', () => {
     });
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 26)).toBe('abyz');
+    });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 0)).toBe('abbbbzzzyy');
     });
   });
 });
@@ -129,6 +147,9 @@ describe('Same algorithm for decoding and encoding', () => {
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 13)).toBe('nolm');
     });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 13)).toBe('noooommmll');
+    });
     test('same algo works in reverse', () => {
       expect(decodeCaesar('nolm', 13)).toBe('abyz');
     });
@@ -145,6 +166,9 @@ describe('Same algorithm for decoding and encoding', () => {
     });
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', -13)).toBe('nolm');
+    });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', -13)).toBe('noooommmll');
     });
     test('same algo works in reverse', () => {
       expect(decodeCaesar('nolm', -13)).toBe('abyz');
@@ -170,6 +194,9 @@ describe('Extra large rotation (> alphabet length of 26)', () => {
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 1)).toBe('zaxy');
     });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 1)).toBe('zaaaayyyxx');
+    });
     test('same algo does NOT work in reverse', () => {
       expect(decodeCaesar('zaxy', 1)).not.toBe('abyz');
     });
@@ -186,6 +213,9 @@ describe('Extra large rotation (> alphabet length of 26)', () => {
     });
     test('multi-char string', () => {
       expect(decodeCaesar('abyz', 27)).toBe('zaxy');
+    });
+    test('multi-char string with repetition', () => {
+      expect(decodeCaesar('abbbbzzzyy', 27)).toBe('zaaaayyyxx');
     });
     test('same algo does NOT work in reverse', () => {
       expect(decodeCaesar('zaxy', 27)).not.toBe('abyz');
