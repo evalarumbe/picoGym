@@ -1,7 +1,7 @@
 const message = 'dspttjohuifsvcjdpoabrkttds';
 
 // rot: number of places to advance in the alphabet to get the cleartext
-function decodeCaesar(ciphertext, rot) {
+function decodeCaesar(ciphertext, rot, debug = false) {
   const az = 'abcdefghijklmnopqrstuvwxyz';
   // Prepare ciphertext for array iteration
   const splitCiphertext = ciphertext.split('');
@@ -45,7 +45,9 @@ function decodeCaesar(ciphertext, rot) {
           solvedCipherChars.push(cipherChar);
         }
         // ...and by logging progress so we can see each replacement
-        console.log(cleartext.join(''));
+        if (debug) {
+          console.log(cleartext.join(''));
+        }
       }
 
       // Exit once all characters have been decoded
@@ -57,15 +59,26 @@ function decodeCaesar(ciphertext, rot) {
     charsExamined += 1;
   }
 
-  console.log(`Solved message of length ${ciphertext.length} with ${uniqueCipherChars.length} unique characters. Examined ${charsExamined} characters and replaced ${solvedCipherChars.length} of them.`);
+  if (debug) {
+    console.log(`Solved message of length ${ciphertext.length} with ${uniqueCipherChars.length} unique characters. Examined ${charsExamined} characters and replaced ${solvedCipherChars.length} of them.`);
+  }
 
   return cleartext.join('');
 }
 
 // Brute force since we don't have the rot key
-// (Try 'em all and find something legible)
+
+// With debugging output to check for lack of redundant traversal
 for (let i = 0; i < 26; i++) {
+  // set debug to 'true' to show progress
+  console.log(decodeCaesar(message, i, true), i, '\n');
+}
+
+// Summarize results so we can manually find one that's legible
+for (let i = 0; i < 26; i++) {
+  // leave debug at default 'false' to show only results 
   console.log(decodeCaesar(message, i), i);
 }
+
 
 module.exports = decodeCaesar;
