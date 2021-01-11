@@ -1,4 +1,11 @@
-const message = 'dspttjohuifsvcjdpoabrkttds';
+const path = require('path');
+const fs = require('fs');
+
+const filePath = path.join(__dirname, 'ciphertext');
+const fileData = fs.readFileSync(filePath, 'utf8');
+
+// message: 'dspttjohuifsvcjdpoabrkttds';
+const message = fileData.match(/picoCTF{(.+)}/)[1];
 
 // rot: number of places to advance in the alphabet to get the cleartext
 function decodeCaesar(ciphertext, rot, debug = false) {

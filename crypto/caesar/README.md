@@ -64,5 +64,3 @@ Goals:
 #### [caesar-04-fewer-iterations-regex](./caesar-04-fewer-iterations-regex.js)
 
 Goal: Same as above, this time with regex.
-
-<!-- TODO: Update all files to read from provided ciphertext file -->
