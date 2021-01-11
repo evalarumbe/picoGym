@@ -64,3 +64,5 @@ Goals:
 #### [caesar-04-fewer-iterations-regex](./caesar-04-fewer-iterations-regex.js)
 
 Goal: Same as above, this time with regex.
+
+The following exercise [13](../13/) elaborates on this one.
