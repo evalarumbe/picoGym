@@ -61,8 +61,13 @@ Goals:
 
 - Simplify the conversion formula by using modulo
 
-#### [caesar-04-fewer-iterations-regex](./caesar-04-fewer-iterations-regex.js)
+### [caesar-04-fewer-iterations-regex](./caesar-04-fewer-iterations-regex.js)
 
 Goal: Same as above, this time with regex.
 
-The following exercise [13](../13/) elaborates on this one.
+<!-- TODO -->
+Next time: expand solution to handle mixed-case strings (pass similar tests to [13](../13/) challenge)
+
+## Elaboration
+
+The following challenge [13](../13/) elaborates on this one.
