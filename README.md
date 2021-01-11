@@ -2,6 +2,8 @@
 
 Using CTF challenges from [picoCTF](https://play.picoctf.org/) as an excuse to get practice with Node and Jest.
 
+This repo refers to the challenges by their original name, (i.e. the only naming convention is "there is no convention").
+
 **Spoiler:** this repo contains solutions.
 
 My approach for these puzzles:
