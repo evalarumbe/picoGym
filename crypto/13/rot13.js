@@ -1,7 +1,7 @@
 // rot: number of places to advance in the alphabet to get the cleartext
 function decodeCaesar(ciphertext, rot, debug = false) {
   // Start the solution with placeholder underscores
-  const cleartext = Array(ciphertext.length).fill('_');
+  const cleartext = Array(ciphertext.length);
 
   const az = 'abcdefghijklmnopqrstuvwxyz';
   
@@ -22,35 +22,38 @@ function decodeCaesar(ciphertext, rot, debug = false) {
   // examine each char in the ciphertext to check whether it needs replacing
   for (let i = 0; i < splitCiphertext.length; i ++) {
     const cipherChar = splitCiphertext[i];
+    let occurrenceIndex = i;
+    let clearChar = cipherChar;
     let lowercase = true;
-    
-    // If this char is alphabetical and still unsolved, decode it.
-    if (cipherChar.match(/[a-zA-Z]/) && cleartext[i] === '_') {
 
-      if (!cipherChar.match(/[a-z]/)) {
-        lowercase = false;
+    // If this char is still unsolved, examine it
+    if (!cleartext[i]) {
+      // Convert only alphabetic chars
+      if (cipherChar.match(/[a-zA-Z]/)) {
+        // Match original case
+        if (!cipherChar.match(/[a-z]/)) {
+          lowercase = false;
+        }
+  
+        const cipherIndex = lowercase ?
+          az.indexOf(cipherChar) :
+          az.toLocaleUpperCase().indexOf(cipherChar);
+  
+        // Modulo makes this work on negative, very large and very small numbers.
+        // To get % to behave like a modulo operator in JS, we need this freaky formula.
+        // MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
+        const clearIndex = (((cipherIndex - shift) % 26 ) + 26 ) % 26;
+  
+        clearChar = lowercase ? 
+          az[clearIndex] :
+          az.toLocaleUpperCase()[clearIndex];
       }
-
-      const cipherIndex = lowercase ?
-        az.indexOf(cipherChar) :
-        az.toLocaleUpperCase().indexOf(cipherChar);
-
-      // Modulo makes this work on negative, very large and very small numbers.
-      // To get % to behave like a modulo operator in JS, we need this freaky formula.
-      // MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Remainder
-      const clearIndex = (((cipherIndex - shift) % 26 ) + 26 ) % 26;
-
-      const clearChar = lowercase ? 
-        az[clearIndex] :
-        az.toLocaleUpperCase()[clearIndex];
-
-      let occurrenceIndex = i;
 
       // check for all occurrences of the current char, and replace them
       while (occurrenceIndex !== -1) {
         cleartext[occurrenceIndex] = clearChar;
         occurrenceIndex = splitCiphertext.indexOf(cipherChar, occurrenceIndex + 1);
-
+  
         // Demonstrate lack of redundant traversal
         // ...by tracking each unique character decoded
         if (!solvedCipherChars.includes(cipherChar)) {
@@ -62,16 +65,13 @@ function decodeCaesar(ciphertext, rot, debug = false) {
         }
       }
 
-      // Exit once all characters have been decoded
-      if (!cleartext.includes('_')) {
-        break;
-      }
-    // If this char is non-alphabetical and still unsolved, use it as is
-    } else if (!cipherChar.match(/[a-zA-Z]/) && cleartext[i] === '_') {
-      cleartext[i] = ciphertext[i];
+      charsExamined += 1;
     }
 
-    charsExamined += 1;
+    // Exit once all characters have been decoded
+    if (!cleartext.filter(char => true).length) {
+      break;
+    }
   }
 
   if (debug) {
