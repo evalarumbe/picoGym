@@ -1,7 +1,7 @@
 // rot: number of places to advance in the alphabet to get the cleartext
 function decodeCaesar(ciphertext, rot, debug = false) {
   // Start the solution with placeholder underscores
-  const cleartext = Array(ciphertext.length);
+  const cleartext = Array(ciphertext.length).fill(null);
 
   const az = 'abcdefghijklmnopqrstuvwxyz';
   
