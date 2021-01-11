@@ -1,6 +1,6 @@
 # Capture the Flag
 
-Using CTF challenges from [picoCTF](https://play.picoctf.org/) as an excuse to get practice with Node and Jest.
+Using CTF challenges from [picoCTF Gym](https://play.picoctf.org/) as an excuse to get practice with Node and Jest.
 
 This repo refers to the challenges by their original name, (i.e. the only naming convention is "there is no convention").
 
