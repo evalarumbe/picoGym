@@ -1,4 +1,4 @@
-const decodeCaesar = require('./caesar-01-3-naive-ways');
+const decodeCaesar = require('./abandoned-caesar-01-3-naive-ways');
 
 // As per https://en.wikipedia.org/wiki/Caesar_cipher
 // E in the cleartext with a rot of -3 becomes B in the ciphertext
